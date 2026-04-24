@@ -95,11 +95,23 @@ The application includes a `isDebugMode` constant:
     ```
     
 
-## ⚠️ Requirements
+## ⚠️ Thing to be added
 
 -   **Assets**: The app expects `assets/app_icon.ico` (Windows) or `assets/app_icon.png` (macOS/Linux) for the system tray functionality.
     
 
 * * *
+
+## 📝 License
+This software is released under the MIT License. You are free to:
+
+- Copy and Distribute: You may copy and redistribute the material in any medium or format.
+
+- Modify: You may remix, transform, and build upon the material for any purpose, even commercially.
+
+- Sublicense: You are permitted to grant others the right to use the software under the same terms.
+
+## 🛡️ Disclaimer of Warranty
+The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement. In no event shall the authors or copyright holders be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the software or the use or other dealings in the software.
 
 _Created as a utility for better digital well-being._
