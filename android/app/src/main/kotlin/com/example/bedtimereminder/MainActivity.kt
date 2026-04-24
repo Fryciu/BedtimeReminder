@@ -1,0 +1,5 @@
+package com.example.bedtimereminder
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity : FlutterActivity()
