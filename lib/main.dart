@@ -17,10 +17,15 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await windowManager.ensureInitialized();
 
-  // Konfiguracja autostartu z nową nazwą
+  // Konfiguracja parametrów autostartu
   launchAtStartup.setup(appName: appName, appPath: Platform.resolvedExecutable);
-  await launchAtStartup.disable();
-  await launchAtStartup.enable();
+
+  // SPRAWDZENIE: Jeśli nie jest jeszcze zarejestrowana, włącz autostart raz.
+  // Dzięki temu przy kolejnych uruchomieniach aplikacja nie będzie "pukać" do rejestru systemowego.
+  bool isRegistered = await launchAtStartup.isEnabled();
+  if (!isRegistered) {
+    await launchAtStartup.enable();
+  }
 
   WindowOptions windowOptions = const WindowOptions(
     size: Size(600, 800),
@@ -29,6 +34,7 @@ void main() async {
   );
 
   await windowManager.waitUntilReadyToShow(windowOptions, () async {
+    // Aplikacja startuje ukryta w tle
     await windowManager.hide();
     await windowManager.setPreventClose(true);
   });
@@ -114,19 +120,26 @@ class _TimeOutAppState extends State<TimeOutApp>
   }
 
   Future<void> _initSystemTray() async {
-    await trayManager.setIcon(
-      Platform.isWindows ? 'assets/app_icon.ico' : 'assets/app_icon.png',
-    );
+    // Wybór ikony w zależności od systemu
+    // Windows najlepiej radzi sobie z .ico, Linux/macOS z .png
+    String iconPath = Platform.isWindows
+        ? 'assets/icon.ico'
+        : 'assets/icon.png';
+
+    await trayManager.setIcon(iconPath);
     await trayManager.setToolTip('Bedtime Reminder');
+    await windowManager.setIcon(
+      'assets/icon.png',
+    ); // Dodaj to przed windowManager.show()
+
     Menu menu = Menu(
       items: [
         MenuItem(
-          label: 'Otwórz BedtimeReminder',
+          label: 'Otwórz $appName',
           onClick: (_) => windowManager.show(),
         ),
-        if (isDebugMode) MenuItem.separator(),
-        if (isDebugMode)
-          MenuItem(label: 'Zatrzymaj proces (Debug)', onClick: (_) => exit(0)),
+        MenuItem.separator(),
+        MenuItem(label: 'Zakończ aplikację', onClick: (_) => exit(0)),
       ],
     );
     await trayManager.setContextMenu(menu);
