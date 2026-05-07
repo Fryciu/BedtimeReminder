@@ -1,4 +1,4 @@
-## BedtimeReminder
+## 💤 BedtimeReminder
 
 **BedtimeReminder** is a desktop application built with Flutter designed to help users maintain a healthy sleep schedule. It functions by "locking" the screen (covering the desktop with a full-screen overlay) during scheduled hours, encouraging the user to stop using the computer and go to sleep.
 
