@@ -95,9 +95,8 @@ The application includes a `isDebugMode` constant:
     ```
     
 
-## ⚠️ Thing to be added
-
--   **Assets**: The app expects `assets/app_icon.ico` (Windows) or `assets/app_icon.png` (macOS/Linux) for the system tray functionality.
+## 🎯 **Plans for the future**:
+- Testing this app on Linux
     
 
 * * *
